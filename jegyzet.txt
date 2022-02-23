@@ -1,0 +1,11 @@
+ng new valami --routing
+ng generate component login
+ng generate service shared/auth
+ng generate service shared/apigroup
+ng g guard shared/auth
+	(*)CanActivate
+ng generate component tesztoldal
+ng serve -o
+
+ng add bootstrap
+	->styles.css->@import "~bootstrap/dist/css/bootstrap.css";

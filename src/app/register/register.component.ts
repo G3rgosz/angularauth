@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 
@@ -14,16 +14,15 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private formBuilder: FormBuilder,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.registerForm = this.formBuilder.group({
-      mail: [''],
-      user: [''],
-      pass: [''],
-      pass2: ['']
+    this.registerForm = new FormGroup({
+      mail: new FormControl('', [Validators.required, Validators.email]),
+      user: new FormControl('', [Validators.required, Validators.pattern('[a-zéáűőúöüóA-ZÉÁŰŐÚÖÜÓ0-9]+')]),
+      pass: new FormControl('', Validators.required),
+      pass2: new FormControl('', Validators.required)
     });
   }
   register(){
